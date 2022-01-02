@@ -4,10 +4,12 @@ using System.Text.Json;
 
 const string ConsolidatedResultsPageUrl = "https://www.parkrun.com/results/consolidatedclub/";
 const string ClubCodeQuerystringKey = "clubNum";
+const string EventDateQueryStringKey = "eventdate"; //eventdate=2021-12-25 - NOTE only append to query if an EventDate is specified
 
 const string ClubCode = "2283";
 const string ClubName = "West End Runners";
 const string ClubNameAbbreviated = "WER";
+const string EventDate = ""; // "2021-12-25";
 
 //const string ClubCode = "17946";
 //const string ClubName = "Leicester Triathlon Club";
@@ -40,7 +42,13 @@ List<Parkrun> parkruns = new List<Parkrun>();
 #region Import
 
 HtmlWeb web = new HtmlWeb();
-HtmlDocument document = web.Load($"{ConsolidatedResultsPageUrl}?{ClubCodeQuerystringKey}={ClubCode}");
+
+string eventDateQueryStringFilter = "";
+
+if (!String.IsNullOrEmpty(EventDate))
+    eventDateQueryStringFilter = $"&{EventDateQueryStringKey}={EventDate}";
+
+HtmlDocument document = web.Load($"{ConsolidatedResultsPageUrl}?{ClubCodeQuerystringKey}={ClubCode}{eventDateQueryStringFilter}");
 
 HtmlNode resultsWrapper = document.DocumentNode.SelectNodes("//div[@class='results-wrapper']").First();
 HtmlNode floatLeft = resultsWrapper.SelectNodes("//div[@class='floatleft']").First();
