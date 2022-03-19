@@ -69,7 +69,11 @@ foreach (var item in h2TitleNodes)
     {
         string runnerName = resultsTable.ChildNodes[i].ChildNodes[2].InnerText;
 
-        if (Exclusions.All(e => !e.Equals(runnerName, StringComparison.OrdinalIgnoreCase)))
+        if (Exclusions.Any(e => e.Equals(runnerName, StringComparison.OrdinalIgnoreCase)))
+        {
+            Console.WriteLine($"Excluded {runnerName}");            
+        }
+        else
         {
             var result = new Result()
             {
@@ -81,10 +85,6 @@ foreach (var item in h2TitleNodes)
                 Time = resultsTable.ChildNodes[i].ChildNodes[4].InnerText
             };
             parkrun.Results.Add(result);
-        }
-        else
-        {
-            Console.WriteLine($"Excluded {runnerName}");
         }
         
     }
