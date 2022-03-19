@@ -11,6 +11,8 @@ const string ClubName = "West End Runners";
 const string ClubNameAbbreviated = "WER";
 const string EventDate = ""; // "2021-12-25";
 
+List<string> Exclusions = new List<string>() { "Fred Bloggs", "John Smith" };
+
 //const string ClubCode = "17946";
 //const string ClubName = "Leicester Triathlon Club";
 //const string ClubNameAbbreviated = "LTC";
@@ -65,16 +67,26 @@ foreach (var item in h2TitleNodes)
 
     for (int i = 1; i < resultsTable.ChildNodes.Count; i++)
     {
-        var result = new Result()
+        string runnerName = resultsTable.ChildNodes[i].ChildNodes[2].InnerText;
+
+        if (Exclusions.All(e => !e.Equals(runnerName, StringComparison.OrdinalIgnoreCase)))
         {
-            Position = Convert.ToInt32(resultsTable.ChildNodes[i].ChildNodes[0].InnerText),
-            GenderPosition = Convert.ToInt32(resultsTable.ChildNodes[i].ChildNodes[1].InnerText),
-            Name = resultsTable.ChildNodes[i].ChildNodes[2].InnerText,
-            LinkToRunner = resultsTable.ChildNodes[i].ChildNodes[2].ChildNodes.First().Attributes.First().Value,
-            Club = resultsTable.ChildNodes[i].ChildNodes[3].InnerText.Trim().Equals(ClubName, StringComparison.InvariantCultureIgnoreCase) ? ClubNameAbbreviated : NonClubRunnersClubName,
-            Time = resultsTable.ChildNodes[i].ChildNodes[4].InnerText
-        };
-        parkrun.Results.Add(result);
+            var result = new Result()
+            {
+                Position = Convert.ToInt32(resultsTable.ChildNodes[i].ChildNodes[0].InnerText),
+                GenderPosition = Convert.ToInt32(resultsTable.ChildNodes[i].ChildNodes[1].InnerText),
+                Name = resultsTable.ChildNodes[i].ChildNodes[2].InnerText,
+                LinkToRunner = resultsTable.ChildNodes[i].ChildNodes[2].ChildNodes.First().Attributes.First().Value,
+                Club = resultsTable.ChildNodes[i].ChildNodes[3].InnerText.Trim().Equals(ClubName, StringComparison.InvariantCultureIgnoreCase) ? ClubNameAbbreviated : NonClubRunnersClubName,
+                Time = resultsTable.ChildNodes[i].ChildNodes[4].InnerText
+            };
+            parkrun.Results.Add(result);
+        }
+        else
+        {
+            Console.WriteLine($"Excluded {runnerName}");
+        }
+        
     }
     parkruns.Add(parkrun);
 }
