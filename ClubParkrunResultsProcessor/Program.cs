@@ -11,7 +11,28 @@ const string ClubName = "West End Runners";
 const string ClubNameAbbreviated = "WER";
 const string EventDate = ""; // "2021-12-25";
 
-List<string> Exclusions = new List<string>() { "Fred Bloggs", "John Smith" };
+List<string> Exclusions = new List<string>()
+{   
+    "Peter Lott",
+    "Zoe Webster",
+    "Morven Burden",
+    "Elaine O'Connor",
+    "Michael David Guy",
+    "Vincent Ly",
+    "Emma Forster",
+    "Ali Robins",
+    "Paul Martin",
+    "Kieron Fletcher",
+    "Darrell Gray",
+    "Sophie Devine",
+    "Thomas Fincham",
+    "David Orton",
+    "Kathryn Hall",
+    "Svenja BETHKE",
+    "Sara TOMASSINI",
+    "Joe Parker",
+    "Taylor Robinson"
+};
 
 //const string ClubCode = "17946";
 //const string ClubName = "Leicester Triathlon Club";
@@ -71,7 +92,7 @@ foreach (var item in h2TitleNodes)
 
         if (Exclusions.Any(e => e.Equals(runnerName, StringComparison.OrdinalIgnoreCase)))
         {
-            Console.WriteLine($"Excluded {runnerName}");            
+            Console.WriteLine($"Excluded {runnerName}");
         }
         else
         {
@@ -86,13 +107,21 @@ foreach (var item in h2TitleNodes)
             };
             parkrun.Results.Add(result);
         }
-        
+
     }
-    parkruns.Add(parkrun);
+    if (parkrun.Results.Count > 0 && parkrun.Results.Any(r => !String.Equals(r.Club, NonClubRunnersClubName, StringComparison.InvariantCultureIgnoreCase)))
+    {
+        parkruns.Add(parkrun);
+    }
+    else
+    {
+        Console.WriteLine($"Excluded {parkrun.Title} as it has no valid club runners");
+    }
+
 }
 
 #endregion
- 
+
 #region Export
 
 var outputDoc = new HtmlDocument();
@@ -104,7 +133,7 @@ foreach (var parkrun in parkruns)
     var parkrunTitle = HtmlNode.CreateNode($"<div><a href='{parkrun.LinkToParkrunResults}'>{parkrun.Title}</a></div>");
     outputDiv.AppendChild(parkrunTitle);
     var participantsDescription = HtmlNode.CreateNode($"<div>{parkrun.ParticpantsDescription}</div>");
-    outputDiv.AppendChild(participantsDescription);    
+    outputDiv.AppendChild(participantsDescription);
 
     var resultsTable = HtmlNode.CreateNode("<table></table>");
     outputDiv.AppendChild(resultsTable);
@@ -129,7 +158,7 @@ foreach (var parkrun in parkruns)
         resultRow.AppendChild(HtmlNode.CreateNode($"<td>{result.Club}</td>"));
         resultRow.AppendChild(HtmlNode.CreateNode($"<td>{result.Time}</td>"));
     }
-        
+
     outputDiv.AppendChild(HtmlNode.CreateNode("<br/>"));
 
 }
