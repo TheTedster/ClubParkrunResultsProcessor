@@ -12,8 +12,7 @@ const string ClubNameAbbreviated = "WER";
 const string EventDate = ""; // "2021-12-25";
 
 List<string> Exclusions = new List<string>()
-{   
-    "Peter Lott",
+{       
     "Zoe Webster",
     "Morven Burden",
     "Elaine O'Connor",
@@ -31,7 +30,8 @@ List<string> Exclusions = new List<string>()
     "Svenja BETHKE",
     "Sara TOMASSINI",
     "Joe Parker",
-    "Taylor Robinson"
+    "Taylor Robinson",
+    "Philip MATHEW"
 };
 
 //const string ClubCode = "17946";
