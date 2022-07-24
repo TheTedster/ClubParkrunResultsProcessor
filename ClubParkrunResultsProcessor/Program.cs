@@ -31,7 +31,8 @@ List<string> Exclusions = new List<string>()
     "Sara TOMASSINI",
     "Joe Parker",
     "Taylor Robinson",
-    "Philip MATHEW"
+    "Philip MATHEW",
+    "Kieron Fletcher"
 };
 
 //const string ClubCode = "17946";
