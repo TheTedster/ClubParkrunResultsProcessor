@@ -32,7 +32,13 @@ List<string> Exclusions = new List<string>()
     "Joe Parker",
     "Taylor Robinson",
     "Philip MATHEW",
-    "Kieron Fletcher"
+    "Kieron Fletcher",
+    "Martin CHAMBERLAIN",
+    "Keiron FLETCHER",
+    "Shaun NEWBOLD",
+    "Caroline Smith",
+    "Jane French",
+    "Louise Shearsby"
 };
 
 //const string ClubCode = "17946";
@@ -71,6 +77,8 @@ string eventDateQueryStringFilter = "";
 
 if (!String.IsNullOrEmpty(EventDate))
     eventDateQueryStringFilter = $"&{EventDateQueryStringKey}={EventDate}";
+
+//https://www.parkrun.com/results/consolidatedclub/?clubNum=2283
 
 HtmlDocument document = web.Load($"{ConsolidatedResultsPageUrl}?{ClubCodeQuerystringKey}={ClubCode}{eventDateQueryStringFilter}");
 
