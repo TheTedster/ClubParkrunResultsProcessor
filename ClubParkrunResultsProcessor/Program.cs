@@ -38,7 +38,8 @@ List<string> Exclusions = new List<string>()
     "Shaun NEWBOLD",
     "Caroline Smith",
     "Jane French",
-    "Louise Shearsby"
+    "Louise Shearsby",
+    "Tamela Maciel"
 };
 
 //const string ClubCode = "17946";
