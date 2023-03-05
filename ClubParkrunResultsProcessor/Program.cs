@@ -18,8 +18,7 @@ List<string> Exclusions = new List<string>()
     "Elaine O'Connor",
     "Michael David Guy",
     "Vincent Ly",
-    "Emma Forster",
-    "Ali Robins",
+    "Emma Forster",    
     "Paul Martin",
     "Kieron Fletcher",
     "Darrell Gray",
@@ -41,7 +40,8 @@ List<string> Exclusions = new List<string>()
     "Louise Shearsby",
     "Tamela Maciel",
     "Liam Curry",
-    "Keir Watson"
+    "Keir Watson",
+    "Jess Green"
 };
 
 //const string ClubCode = "17946";
