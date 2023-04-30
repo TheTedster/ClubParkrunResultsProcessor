@@ -40,7 +40,9 @@ List<string> Exclusions = new List<string>()
     "Tamela Maciel",
     "Liam Curry",
     "Keir Watson",
-    "Jess Green"
+    "Jess Green",
+    "Adam CLEGG",
+    "Chiara BORG"
 };
 
 //const string ClubCode = "17946";
