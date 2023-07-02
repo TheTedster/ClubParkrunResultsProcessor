@@ -1,5 +1,6 @@
 ﻿using ClubParkrunResultsProcessor.Models;
 using HtmlAgilityPack;
+using System.Net;
 using System.Text.Json;
 
 const string ConsolidatedResultsPageUrl = "https://www.parkrun.com/results/consolidatedclub/";
@@ -42,7 +43,10 @@ List<string> Exclusions = new List<string>()
     "Keir Watson",
     "Jess Green",
     "Adam CLEGG",
-    "Chiara BORG"
+    "Chiara BORG",
+    "Kathy Rolington",
+    "Chris Alder",
+    "Abbey SCULLEY"
 };
 
 //const string ClubCode = "17946";
@@ -74,6 +78,23 @@ List<Parkrun> parkruns = new List<Parkrun>();
 //}
 
 #region Import
+
+//var proxy = new WebProxy()
+//{
+//    Address = new Uri($"http://{proxyHost}:{proxyPort}"),
+//    // Uncomment these lines if your proxy requires authentication
+//    // Credentials = new NetworkCredential(
+//    //    userName: proxyUserName,
+//    //    password: proxyPassword)
+//};
+
+//HtmlWeb web = new HtmlWeb();
+//web.PreRequest += request =>
+//{
+//    request.Proxy = proxy;
+//    return true;
+//};
+
 
 HtmlWeb web = new HtmlWeb();
 
